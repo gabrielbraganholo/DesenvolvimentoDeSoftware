@@ -1,61 +1,54 @@
-CREATE DATABASE Escola;
+CREATE DATABASE BDAula01;
 
-USE Escola;
+SHOW DATABASES;
 
-CREATE TABLE aluno
+USE BDAula01;
+
+CREATE TABLE pessoa
 (
 	id int auto_increment PRIMARY KEY,
     nome varchar(50) NOT NULL,
-    idade int NOT NULL,
-    curso varchar(50) NOT NULL
+    sexo varchar(1) NOT NULL,
+    idioma varchar(10) NOT NULL
 );
-
-INSERT INTO aluno (nome, idade, curso)
+ 
+SHOW TABLES;
+DESC pessoa;
+ 
+INSERT INTO pessoa(nome, sexo, idioma)
 VALUES
-('João Silva', 20, 'Sistemas de Informação'),
-('Maria Souza', 22, 'Engenharia de Software'),
-('Carlos Oliveira', 19, 'Ciência da Computação'),
-('Ana Costa', 21, 'Análise de Sistemas'),
-('Pedro Santos', 23, 'Sistemas de Informação');
+('João Silva', 'M', 'Português'),
+('Maria Souza', 'F', 'Português'),
+('Carlos Oliveira', 'M', 'Inglês'),
+('Ana Costa', 'F', 'Espanhol'),
+('Pedro Santos', 'M', 'Francês'),
+('Julia Almeida', 'F', 'Alemão'),
+('Lucas Pereira', 'M', 'Italiano'),
+('Beatriz Lima', 'F', 'Japonês'),
+('Rafael Gomes', 'M', 'Português'),
+('Camila Rocha', 'F', 'Inglês'),
+('Bruno Martins', 'M', 'Espanhol'),
+('Larissa Alves', 'F', 'Francês'),
+('Gabriel Ribeiro', 'M', 'Alemão'),
+('Fernanda Dias', 'F', 'Italiano'),
+('Diego Carvalho', 'M', 'Português');
 
 SELECT *
-FROM aluno;
+FROM pessoa;
 
-CREATE TABLE professor
+CREATE TABLE veiculo
 (
-	id int auto_increment PRIMARY KEY,
-    nome varchar(50) NOT NULL,
-    idade int NOT NULL,
-    disciplina varchar(50) NOT NULL
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    modelo VARCHAR(30),
+    placa VARCHAR(7),
+    id_pessoa INT NOT NULL,
+    foreign key(id_pessoa) references pessoa(id)
 );
 
-INSERT INTO professor (nome, idade, disciplina)
-VALUES
-('Marcos Almeida', 45, 'Banco de Dados'),
-('Juliana Ferreira', 38, 'Programação'),
-('Ricardo Martins', 52, 'Engenharia de Software');
-
-CREATE TABLE matricula
-(
-	id int auto_increment PRIMARY KEY,
-    id_aluno int,
-    id_professor int,
-    data_matricula date,
-    
-    FOREIGN KEY (id_aluno) references aluno(id),
-    FOREIGN KEY (id_professor) references professor(id)
-);
-
-desc matricula;
-
-INSERT INTO matricula(id_aluno, id_professor, data_matricula)
-VALUES
-	(1, 1, '2026-09-01'),
-	(2, 2, '2026-09-02'),
-	(3, 3, '2026-09-03'),
-	(4, 1, '2026-09-04'),
-	(5, 2, '2026-09-05');
-    
-    
 SELECT *
-FROM matricula;
+FROM veiculo;
+
+
+
+
+
